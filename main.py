@@ -63,8 +63,23 @@ class bbxy:
         response = self.client.get("https://bbxy.shop/user")
         return response.status_code == 200
 
+# 推送至 pushplus(微信公众号)
+def send_wechat(msg):
+    token = os.environ["PUSHPLUS_TOKEN"] #前边复制到那个token
+    title = '---百变小樱---'
+    content = msg
+    template = 'html'
+    url = f"http://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
+    if httpx.get(url).status_code != 200:
+        return False
+    return True
+
 
 if __name__ == '__main__':
     print("任务开始...")
     B = bbxy()
-    print(B.sign())
+    msg = B.sign()
+    print(msg)
+    print("正在推送签到结果至pushplus")
+    send_wechat(msg)
+    print("推送完成，任务结束！")
