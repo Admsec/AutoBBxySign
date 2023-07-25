@@ -65,16 +65,18 @@ class bbxy:
 
 # 推送至 pushplus(微信公众号)
 def send_wechat(msg):
-    token = os.environ["PUSHPLUS_TOKEN"] #前边复制到那个token
-    title = '---百变小樱---'
-    content = msg
-    template = 'html'
-    url = f"http://www.pushplus.plus/send?token={token}&title={title}&content={content}&template={template}"
-    if httpx.get(url).status_code != 200:
+    url = "http://www.pushplus.plus/send"
+    data = {
+        "token": os.environ["PUSHPLUS_TOKEN"],
+        "title": '---百变小樱---',
+        "content": msg,
+        "template": "html",
+    }
+    if httpx.post(url, data=data).status_code != 200:
         return False
     return True
 
-
+send_wechat("gksdlgsd")
 if __name__ == '__main__':
     print("任务开始...")
     B = bbxy()
