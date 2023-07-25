@@ -63,4 +63,8 @@ class bbxy:
         response = self.client.get("https://bbxy.shop/user")
         return response.status_code == 200
 
-print(os.environ)
+
+if __name__ == '__main__':
+    print("任务开始...")
+    B = bbxy()
+    print(B.sign())
