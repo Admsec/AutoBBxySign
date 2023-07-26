@@ -76,7 +76,7 @@ def send_wechat(msg):
         return False
     return True
 
-send_wechat("gksdlgsd")
+
 if __name__ == '__main__':
     print("任务开始...")
     B = bbxy()
